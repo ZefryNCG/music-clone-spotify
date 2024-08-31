@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+   
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #1DB954;
+        }
+
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+            background-color: #3a3a3a;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #17a443;
+        }
+
+        .song-details {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .song-details img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #1DB954;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        p {
+            color: #ff4c4c;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Music Player</h1>
+        <form action="/search" method="POST">
+            <input type="text" name="query" placeholder="Search for a song..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        <% if (song) { %>
+            <div class="song-details">
+                <img src="<%= song.thumb %>" alt="Thumbnail">
+                <h2><%= song.title %></h2>
+                <audio controls>
+                    <source src="<%= song.dlink %>" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        <% } else if (error) { %>
+            <p><%= error %></p>
+        <% } %>
+    </div>
+</body>
+</html>
