@@ -1,14 +1,10 @@
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-const path = require('path'); // Import path module
 const app = express();
 
-// Set the view engine to EJS and specify the directory for views
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname)); // Use path.join for compatibility
-
-app.use(express.static('public')); // Serve static files from 'public' directory
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
